@@ -1,0 +1,30 @@
+{
+  "name": "deep-jquery-ajax",
+  "description":"jquery ajax stores for deep",
+  "author":{
+    "name": "Gilles Coomans",
+    "email": "gilles.coomans@gmail.com"
+  }, 
+  "version": "0.1.0",
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nomocas/deep-jquery-ajax.git"
+  },
+  "maintainers": [
+    {
+      "name": "Philippe Delabye",
+      "email": "phil@chemicalrules.net"
+    }
+  ],
+  "dependencies": {
+    "deep": ">=0.9.3.1"
+  },
+  "mappings":{
+    "deep": "git+ssh://git@dev.ubik.be/deep"
+  },
+  "engine":{
+  	"node":">=0.10.0"
+  },
+  "main":"./lib/main"
+}
