@@ -26,5 +26,5 @@
   "engine":{
   	"node":">=0.10.0"
   },
-  "main":"./lib/main"
+  "main":"main.js"
 }
