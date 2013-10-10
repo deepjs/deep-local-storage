@@ -1,34 +1,17 @@
-deep-fs provides simple wrappers that wrap nodejs asynch fs call (read and write) in a deep compliant (promised base) way.
-
-Provided protocoles (see deep protocoles) :
-
-	- raw text file (or html)  (text:: or html::)
-	- json (json::)
+# deep-local-storage
 
 
-It support File watching.
+local storage driver (store) for deepjs (based on jstorage) 
 
 
+## Usage
 
-Usage
-=========
+	require("deep-local-storage/index").create("myprotocole");
 
-	require("deep-fs/json");
-
-	deep("json::./my/file.json")
+	deep.store("myprotocole")
+	.post({ hello:"world" })
+	.get()
 	.log();
 
-
-
-	deep.store("json").post({ hello:"world" }, { id:"./my/path/to/output.json" })
-
-
-
-	deep.store.JSON("myprotocole", schema, {
-		fileWatching:true
-	});
-
-
-	deep.mode.dev = true;
-
+	deep("myprotocole::?hello=world").log();
 	
