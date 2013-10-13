@@ -18,35 +18,31 @@ define(["require", "deep/deep"],function (require, deep)
 	 * @param  {[type]} schema                  (optional)[description]
 	 * @param  {[type]} options    (optional){ path:{ required string }, TTL:{ time to live (ms) }}
 	 */
+	
 	deep.store.jstorage.Object = deep.compose.Classes(deep.store.Object,
 		function(protocole, root, schema, options){
 			options = options || {};
-			if(!options.path && !protocole)
-				throw deep.errors.Store("jstorage.Object need a path at constructor. please provide a options.path or a protocole.");
 			var path = options.path || protocole;
-			var current = root || $.jStorage.get(path);
+			if(!path)
+				throw deep.errors.Store("jstorage.Object need a path at constructor. please provide a options.path or a protocole.");
+			var current = root || this.root ||  $.jStorage.get(path);
 			if(!current)
 			{
 				current = {};
 				$.jStorage.set(path, current, options);
 			}
 			this.root = current;
-			deep.utils.up({
-				post:deep.compose.after(function (object, opt) {
-					$.jStorage.set(path, this.root, deep.utils.bottom(options, opt));
-					return object;
-				}),
-				put:deep.compose.after(function (object, opt) {
-					$.jStorage.set(path, this.root, deep.utils.bottom(options, opt));
-					return object;
-				}),
-				patch:deep.compose.after(function (object, opt) {
-					$.jStorage.set(path, this.root, deep.utils.bottom(options, opt));
-					return object;
-				}),
-				del:deep.compose.after(function (object, opt) {
-					$.jStorage.set(path, this.root, deep.utils.bottom(options, opt));
-					return object;
+			deep.utils.sheet({
+				"dq.up::./[post,put,patch,del]":deep.compose.around(function(old)
+				{
+					return function (object, opt) {
+						var o = deep.utils.bottom(options, opt);
+						var self = this;
+						return deep.when(old.call(this, object, o))
+						.done(function (object) {
+							$.jStorage.set(path, self.root, o);
+						});
+					};
 				})
 			}, this);
 		},
@@ -56,9 +52,9 @@ define(["require", "deep/deep"],function (require, deep)
 				$.jStorage.set(path, this.root, opt);
 			}
 		});
-        deep.store.jstorage.Object.create = function(protocole, root, schema)
+        deep.store.jstorage.Object.create = function(protocole, root, schema, options)
         {
-            return new deep.store.jstorage.Object(protocole, root, schema);
+            return new deep.store.jstorage.Object(protocole, root, schema, options);
         };
 	/**
 	 * deep.store.jstorage.Collection
@@ -70,32 +66,28 @@ define(["require", "deep/deep"],function (require, deep)
 	deep.store.jstorage.Collection = deep.compose.Classes(deep.store.Collection,
 		function(protocole, collection, schema, options){
 			options = options || {};
-			if(!options.path && !protocole)
-				throw deep.errors.Store("jstorage.Collection need a path at constructor. please provide a options.path or a protocole.");
 			var path = options.path || protocole;
-			var current = collection || $.jStorage.get(path);
+			if(!path)
+				throw deep.errors.Store("jstorage.Collection need a path at constructor. please provide a options.path or a protocole.");
+			var current = collection || this.collection || $.jStorage.get(path);
 			if(!current)
 			{
 				current = [];
 				$.jStorage.set(path, current, options);
 			}
 			this.collection = current;
-			deep.utils.up({
-				post:deep.compose.after(function (object, opt) {
-					$.jStorage.set(path, this.collection, deep.utils.bottom(options, opt));
-					return object;
-				}),
-				put:deep.compose.after(function (object, opt) {
-					$.jStorage.set(path, this.collection, deep.utils.bottom(options, opt));
-					return object;
-				}),
-				patch:deep.compose.after(function (object, opt) {
-					$.jStorage.set(path, this.collection, deep.utils.bottom(options, opt));
-					return object;
-				}),
-				del:deep.compose.after(function (object, opt) {
-					$.jStorage.set(path, this.collection, deep.utils.bottom(options, opt));
-					return object;
+			deep.utils.sheet({
+				"dq.up::./[post,put,patch,del]":deep.compose.around(function(old)
+				{
+					return function (object, opt) {
+						//console.log("action : ", object, opt);
+						var o = deep.utils.bottom(options, opt);
+						var self = this;
+						return deep.when(old.call(this, object, o))
+						.done(function (object) {
+							$.jStorage.set(path, self.collection, o);
+						});
+					};
 				})
 			}, this);
 		},
@@ -105,9 +97,9 @@ define(["require", "deep/deep"],function (require, deep)
 				$.jStorage.set(path, this.collection, opt);
 			}
 		});
-        deep.store.jstorage.Collection.create = function(protocole, collection, schema)
+        deep.store.jstorage.Collection.create = function(protocole, collection, schema, options)
         {
-            return new deep.store.jstorage.Collection(protocole, collection, schema);
+            return new deep.store.jstorage.Collection(protocole, collection, schema, options);
         };
 	//__________________________________________________
 	return deep.store.JStorage;
