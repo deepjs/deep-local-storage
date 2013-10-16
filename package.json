@@ -18,10 +18,10 @@
     }
   ],
   "dependencies": {
-    "deep": ">=0.9.3.1"
+    "deep": ">=0.9.4"
   },
   "mappings":{
-    "deep": "git+ssh://git@dev.ubik.be/deep"
+    "deep": "https://github.com/deepjs/deepjs.git"
   },
   "engine":{
   	"node":">=0.10.0"
