@@ -36,15 +36,15 @@ define(["require", "deep/deep"],function (require, deep)
 				"dq.up::./[post,put,patch,del]":deep.compose.around(function(old)
 				{
 					return function (object, opt) {
-						var o = deep.utils.bottom(options, opt);
 						var self = this;
-						return deep.when(old.call(this, object, o))
+						return deep.when(old.call(this, object, opt))
 						.done(function (object) {
-							$.jStorage.set(path, self.root, o);
+							$.jStorage.set(path, self.root, opt);
 						});
 					};
-				})
+				}),
 			}, this);
+			deep.utils.up(options, this);
 		},
 		{
 			flush:function(opt){
@@ -81,15 +81,15 @@ define(["require", "deep/deep"],function (require, deep)
 				{
 					return function (object, opt) {
 						//console.log("action : ", object, opt);
-						var o = deep.utils.bottom(options, opt);
 						var self = this;
-						return deep.when(old.call(this, object, o))
+						return deep.when(old.call(this, object, opt))
 						.done(function (object) {
-							$.jStorage.set(path, self.collection, o);
+							$.jStorage.set(path, self.collection, opt);
 						});
 					};
 				})
 			}, this);
+			deep.utils.up(options, this);
 		},
 		{
 			flush:function(opt){
