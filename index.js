@@ -101,6 +101,9 @@ define(["require", "deep/deep"],function (require, deep)
         {
             return new deep.store.jstorage.Collection(protocole, collection, schema, options);
         };
+
+        deep.coreUnits = deep.coreUnits || [];
+    	deep.coreUnits.push("js::deep-local-storage/units/generic");
 	//__________________________________________________
-	return deep.store.JStorage;
+	return deep.store.jstorage;
 });
