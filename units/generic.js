@@ -25,7 +25,7 @@ define(["require","deep/deep", "deep/deep-unit"], function (require, deep, Unit)
     var unit = {
         title:"deep-local-storage generic testcases",
         setup:function(){
-            return this.options.context.init();
+            return require("deep-local-storage/index").Collection.create("jstoragetest", []);
         },
         tests : {
             post:function(){
@@ -108,7 +108,5 @@ deep.store("myobjects")
 ])
 .log();
 */
-	return new Unit(unit, {
-        context:require("deep-local-storage/index").Collection.create("jstoragetest", [])
-    });
+	return new Unit(unit);
 });
