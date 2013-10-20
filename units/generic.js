@@ -23,7 +23,7 @@ define(["require","deep/deep", "deep/deep-unit"], function (require, deep, Unit)
     };
 
     var unit = {
-        title:"deep-local-storage generic testcases",
+        title:"deep-local-storage",
         setup:function(){
             return require("deep-local-storage/index").Collection.create("jstoragetest", []);
         },
