@@ -49,7 +49,7 @@ define(["require", "deep/deep"],function (require, deep)
 		{
 			flush:function(opt){
 				this.root = {};
-				$.jStorage.set(path, this.root, opt);
+				$.jStorage.set(this.path || this.protocole, this.root, opt);
 			}
 		});
         deep.store.jstorage.Object.create = function(protocole, root, schema, options)
@@ -94,7 +94,7 @@ define(["require", "deep/deep"],function (require, deep)
 		{
 			flush:function(opt){
 				this.collection = [];
-				$.jStorage.set(path, this.collection, opt);
+				$.jStorage.set(this.path || this.protocole, this.collection, opt);
 			}
 		});
         deep.store.jstorage.Collection.create = function(protocole, collection, schema, options)
