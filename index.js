@@ -47,10 +47,9 @@ define(["require", "deep/deep"],function (require, deep)
 			deep.utils.up(options, this);
 		},
 		{
-			flush:function(opt){
-				this.root = {};
+			flush:deep.compose.after(function(opt){
 				$.jStorage.set(this.path || this.protocole, this.root, opt);
-			}
+			})
 		});
         deep.store.jstorage.Object.create = function(protocole, root, schema, options)
         {
@@ -92,10 +91,10 @@ define(["require", "deep/deep"],function (require, deep)
 			deep.utils.up(options, this);
 		},
 		{
-			flush:function(opt){
+			flush:deep.compose.after(function(opt){
 				this.collection = [];
 				$.jStorage.set(this.path || this.protocole, this.collection, opt);
-			}
+			})
 		});
         deep.store.jstorage.Collection.create = function(protocole, collection, schema, options)
         {
@@ -103,7 +102,7 @@ define(["require", "deep/deep"],function (require, deep)
         };
 
         deep.coreUnits = deep.coreUnits || [];
-    	deep.coreUnits.push("js::deep-local-storage/units/generic");
+		deep.coreUnits.push("js::deep-local-storage/units/generic");
 	//__________________________________________________
 	return deep.store.jstorage;
 });
