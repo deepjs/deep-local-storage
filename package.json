@@ -2,7 +2,7 @@
   "name": "deep-jquery-ajax",
   "description":"jquery ajax stores for deep",
   "author":"Gilles Coomans <gilles.coomans@gmail.com>",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "contributors": [],
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     }
   ],
   "dependencies": {
-    "deepjs": ">=0.9.5"
+    "deepjs": ">=0.9.6"
   },
   "mappings":{
     "deep": "https://github.com/deepjs/deepjs.git"
