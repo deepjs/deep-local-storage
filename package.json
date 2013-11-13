@@ -1,12 +1,12 @@
 {
-  "name": "deep-jquery-ajax",
-  "description":"jquery ajax stores for deep",
+  "name": "deep-local-storage",
+  "description":"jquery local storage stores and protocol for deepjs",
   "author":"Gilles Coomans <gilles.coomans@gmail.com>",
   "version": "0.2.0",
   "contributors": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/deepjs/deep-jquery-ajax.git"
+    "url": "https://github.com/deepjs/deep-local-storage.git"
   },
   "maintainers": [
     {
@@ -18,10 +18,9 @@
     "deepjs": ">=0.9.6"
   },
   "mappings":{
-    "deep": "https://github.com/deepjs/deepjs.git"
   },
   "engine":{
   	"node":">=0.10.0"
   },
-  "main":"index.js"
+  "main":"./index.js"
 }
