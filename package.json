@@ -3,16 +3,16 @@
   "description":"jquery local storage stores and protocol for deepjs",
   "author":"Gilles Coomans <gilles.coomans@gmail.com>",
   "version": "0.2.0",
-  "contributors": [],
+  "contributors": ["Philippe Delabye <phil@chemicalrules.net>"],
   "repository": {
     "type": "git",
     "url": "https://github.com/deepjs/deep-local-storage.git"
   },
-  "maintainers": [
+  "licenses": [
     {
-      "name": "Philippe Delabye",
-      "email": "phil@chemicalrules.net"
-    }
+         "type": "LGPLv3.0",
+         "url": "http://www.gnu.org/licenses/lgpl-3.0.txt"
+     }
   ],
   "dependencies": {
     "deepjs": ">=0.9.6"
