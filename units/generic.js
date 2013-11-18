@@ -31,28 +31,32 @@ define(["require","deepjs/deep", "deepjs/deep-unit"], function (require, deep, U
             post:function(){
                 return deep.store(this)
                 //.log("chain store init in test")
-                .log("post")
                 .post( postTest )
                 .equal( postTest )
-                .log("get")
                 .get("id123")
                 .equal(postTest);
+            },
+            postWithSameID:function(){
+                return deep.store(this)
+                //.log("chain store init in test")
+                .post( postTest )
+                .fail(function(error){
+                    if(error && error.status == 409)
+                        return true;
+                });
             },
             put:function(){
                 // post
                 return deep.store(this)
                 // put
-                .log("put")
                 .put(putTest)
                 .equal( putTest )
-                .log("get")
                 .get("id123")
                 .equal( putTest );
             },
             patch:function(){
                 // post
                 return deep.store(this)
-                .log("patch")
                 .patch({
                     order:4,
                     newVar:true,
@@ -60,7 +64,6 @@ define(["require","deepjs/deep", "deepjs/deep-unit"], function (require, deep, U
                 })
                 .equal(patchTest)
                 //.log("patch")
-                .log("get")
                 .get("id123")
                 .equal(patchTest);
             },
@@ -68,19 +71,16 @@ define(["require","deepjs/deep", "deepjs/deep-unit"], function (require, deep, U
                 // post
                 return deep.store(this)
                 // query
-                .log("query")
                 .get("?order=4")
                 .equal([patchTest]);
             },
             del:function () {
                 var delDone = false;
                 return deep.store(this)
-                .log("del")
                 .del("id123")
                 .done(function (argument) {
                     delDone = true;
                 })
-                .log("get")
                 .get("id123")
                 .fail(function(error){
                     if(delDone && error.status == 404)
