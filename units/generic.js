@@ -108,5 +108,5 @@ deep.store("myobjects")
 ])
 .log();
 */
-	return new Unit(unit);
+	return unit;
 });
