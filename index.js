@@ -32,7 +32,7 @@ define(["require", "deepjs/deep"],function (require, deep)
 				$.jStorage.set(path, current, options);
 			}
 			this.root = current;
-			deep.utils.sheet({
+			deep.sheet({
 				"dq.up::./[post,put,patch,del]":deep.compose.around(function(old)
 				{
 					return function (object, opt) {
@@ -75,7 +75,7 @@ define(["require", "deepjs/deep"],function (require, deep)
 				$.jStorage.set(path, current, options);
 			}
 			this.collection = current;
-			deep.utils.sheet({
+			deep.sheet({
 				"dq.up::./[post,put,patch,del]":deep.compose.around(function(old)
 				{
 					return function (object, opt) {
