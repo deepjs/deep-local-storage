@@ -2,7 +2,7 @@
   "name": "deep-local-storage",
   "description":"jquery local storage stores and protocol for deepjs",
   "author":"Gilles Coomans <gilles.coomans@gmail.com>",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "contributors": ["Philippe Delabye <phil@chemicalrules.net>"],
   "repository": {
     "type": "git",
