@@ -13,18 +13,18 @@ define(["require", "deepjs/deep"],function (require, deep)
 	deep.store.jstorage = deep.store.jstorage || {};
 	/**
 	 * deep.store.jstorage.Object
-	 * @param  {[type]} protocole               (optional)[description]
+	 * @param  {[type]} protocol               (optional)[description]
 	 * @param  {[type]} root					(optional)[description]
 	 * @param  {[type]} schema                  (optional)[description]
 	 * @param  {[type]} options    (optional){ path:{ required string }, TTL:{ time to live (ms) }}
 	 */
 	
 	deep.store.jstorage.Object = deep.compose.Classes(deep.store.Object,
-		function(protocole, root, schema, options){
+		function(protocol, root, schema, options){
 			options = options || {};
-			var path = options.path || protocole;
+			var path = options.path || protocol;
 			if(!path)
-				throw deep.errors.Store("jstorage.Object need a path at constructor. please provide a options.path or a protocole.");
+				throw deep.errors.Store("jstorage.Object need a path at constructor. please provide a options.path or a protocol.");
 			var current = root || this.root ||  $.jStorage.get(path);
 			if(!current)
 			{
@@ -48,26 +48,26 @@ define(["require", "deepjs/deep"],function (require, deep)
 		},
 		{
 			flush:deep.compose.after(function(opt){
-				$.jStorage.set(this.path || this.protocole, this.root, opt);
+				$.jStorage.set(this.path || this.protocol, this.root, opt);
 			})
 		});
-        deep.store.jstorage.Object.create = function(protocole, root, schema, options)
+        deep.store.jstorage.Object.create = function(protocol, root, schema, options)
         {
-            return new deep.store.jstorage.Object(protocole, root, schema, options);
+            return new deep.store.jstorage.Object(protocol, root, schema, options);
         };
 	/**
 	 * deep.store.jstorage.Collection
-	 * @param  {[type]} protocole                 (optional)[description]
+	 * @param  {[type]} protocol                 (optional)[description]
 	 * @param  {[type]} collection                (optional)[description]
 	 * @param  {[type]} schema                    (optional)[description]
 	 * @param  {[type]} options    (optional){ path:{ required string }, TTL:{ time to live (ms) }}
 	 */
 	deep.store.jstorage.Collection = deep.compose.Classes(deep.store.Collection,
-		function(protocole, collection, schema, options){
+		function(protocol, collection, schema, options){
 			options = options || {};
-			var path = options.path || protocole;
+			var path = options.path || protocol;
 			if(!path)
-				throw deep.errors.Store("jstorage.Collection need a path at constructor. please provide a options.path or a protocole.");
+				throw deep.errors.Store("jstorage.Collection need a path at constructor. please provide a options.path or a protocol.");
 			var current = collection || this.collection || $.jStorage.get(path);
 			if(!current)
 			{
@@ -93,12 +93,12 @@ define(["require", "deepjs/deep"],function (require, deep)
 		{
 			flush:deep.compose.after(function(opt){
 				this.collection = [];
-				$.jStorage.set(this.path || this.protocole, this.collection, opt);
+				$.jStorage.set(this.path || this.protocol, this.collection, opt);
 			})
 		});
-        deep.store.jstorage.Collection.create = function(protocole, collection, schema, options)
+        deep.store.jstorage.Collection.create = function(protocol, collection, schema, options)
         {
-            return new deep.store.jstorage.Collection(protocole, collection, schema, options);
+            return new deep.store.jstorage.Collection(protocol, collection, schema, options);
         };
 
         deep.coreUnits = deep.coreUnits || [];
