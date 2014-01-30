@@ -25,7 +25,9 @@ define(["require", "deepjs/deep"],function (require, deep)
 			var path = options.path || protocol;
 			if(!path)
 				throw deep.errors.Store("jstorage.Object need a path at constructor. please provide a options.path or a protocol.");
-			var current = root || this.root ||  $.jStorage.get(path);
+			// console.log("jstorage init : ", protocol, root, this.root, $.jStorage.get(path))
+			var current = $.jStorage.get(path) || root || this.root;
+			//console.log("root : ", current)
 			if(!current)
 			{
 				current = {};
