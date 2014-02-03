@@ -8,7 +8,7 @@
 if (typeof define !== 'function') {
     var define = require('amdefine')(module);
 }
-define(["require", "deepjs/deep"],function (require, deep)
+define(["require", "deepjs/deep", "deepjs/lib/stores/object-store", "deepjs/lib/stores/collection-store"],function (require, deep)
 {
 	deep.store.jstorage = deep.store.jstorage || {};
 	/**
@@ -34,18 +34,7 @@ define(["require", "deepjs/deep"],function (require, deep)
 				$.jStorage.set(path, current, options);
 			}
 			this.root = current;
-			deep.sheet({
-				"dq.up::./[post,put,patch,del]":deep.compose.around(function(old)
-				{
-					return function (object, opt) {
-						var self = this;
-						return deep.when(old.call(this, object, opt))
-						.done(function (object) {
-							$.jStorage.set(path, self.root, opt);
-						});
-					};
-				}),
-			}, this);
+			
 			deep.utils.up(options, this);
 		},
 		{
@@ -58,6 +47,18 @@ define(["require", "deepjs/deep"],function (require, deep)
         {
             return new deep.store.jstorage.Object(protocol, root, schema, options);
         };
+        deep.sheet({
+			"dq.up::./[post,put,patch,del]":deep.compose.around(function(old)
+			{
+				return function (object, opt) {
+					var self = this;
+					return deep.when(old.call(this, object, opt))
+					.done(function (object) {
+						$.jStorage.set(path, self.root, opt);
+					});
+				};
+			}),
+		}, deep.store.jstorage.Object.prototype);
 	/**
 	 * deep.store.jstorage.Collection
 	 * @param  {[type]} protocol                 (optional)[description]
