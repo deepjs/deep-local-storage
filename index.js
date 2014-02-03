@@ -50,6 +50,7 @@ define(["require", "deepjs/deep"],function (require, deep)
 		},
 		{
 			flush:deep.compose.after(function(opt){
+				this.root  = {};
 				$.jStorage.set(this.path || this.protocol, this.root, opt);
 			})
 		});

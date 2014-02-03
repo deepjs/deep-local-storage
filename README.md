@@ -4,9 +4,11 @@
 local storage driver (store) for deepjs (based on jstorage) 
 
 
-## Usage
+## Collection store Usage 
 
-	require("deep-local-storage/index").create("myprotocol");
+```javascript 
+	require("deep-local-storage/index");
+	deep.store.jstorage.Collection.create("myprotocol");
 
 	deep.store("myprotocol")
 	.post({ hello:"world" })
@@ -14,8 +16,6 @@ local storage driver (store) for deepjs (based on jstorage)
 	.log();
 
 	deep("myprotocol::?hello=world").log();
-	
-
 
 	deep.store("myprotocol")
 	.put({ id:'test', myVar:"hello", myObject:{ myVar2:12344 }})
@@ -30,3 +30,24 @@ local storage driver (store) for deepjs (based on jstorage)
 	.logState()
 	.get("test")
 	.logState();
+```
+
+## Object store Usage 
+
+```javascript
+	require("deep-local-storage/index");
+	deep.store.jstorage.Object.create("myprotocol");
+
+	deep.store("myprotocol")
+	.post({ hello:"world" },{ id:"/my/path" })
+	.get()
+	.log();
+
+	deep("myprotocol::/my/path").log();
+
+	//...
+
+```
+
+
+
