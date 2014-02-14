@@ -27,6 +27,7 @@ define(["require", "deepjs/deep", "deepjs/lib/stores/object-store", "deepjs/lib/
 				throw deep.errors.Store("jstorage.Object need a path at constructor. please provide a options.path or a protocol.");
 			// console.log("jstorage init : ", protocol, root, this.root, $.jStorage.get(path))
 			var current = $.jStorage.get(path) || root || this.root;
+			this.path = path;
 			//console.log("root : ", current)
 			if(!current)
 			{
@@ -54,7 +55,7 @@ define(["require", "deepjs/deep", "deepjs/lib/stores/object-store", "deepjs/lib/
 					var self = this;
 					return deep.when(old.call(this, object, opt))
 					.done(function (object) {
-						$.jStorage.set(path, self.root, opt);
+						$.jStorage.set(self.path, self.root, opt);
 					});
 				};
 			}),
@@ -72,6 +73,7 @@ define(["require", "deepjs/deep", "deepjs/lib/stores/object-store", "deepjs/lib/
 			var path = options.path || protocol;
 			if(!path)
 				throw deep.errors.Store("jstorage.Collection need a path at constructor. please provide a options.path or a protocol.");
+			this.path = path;
 			var current = collection || this.collection || $.jStorage.get(path);
 			if(!current)
 			{
@@ -87,7 +89,7 @@ define(["require", "deepjs/deep", "deepjs/lib/stores/object-store", "deepjs/lib/
 						var self = this;
 						return deep.when(old.call(this, object, opt))
 						.done(function (object) {
-							$.jStorage.set(path, self.collection, opt);
+							$.jStorage.set(self.path, self.collection, opt);
 						});
 					};
 				})
