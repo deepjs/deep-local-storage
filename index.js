@@ -8,7 +8,7 @@
 if (typeof define !== 'function') {
     var define = require('amdefine')(module);
 }
-define(["require", "deepjs/deep", "deepjs/lib/stores/object-store", "deepjs/lib/stores/collection-store"],function (require, deep)
+define(["require", "deepjs/deep", "deepjs/lib/stores/object", "deepjs/lib/stores/collection"],function (require, deep)
 {
 	deep.store.jstorage = deep.store.jstorage || {};
 	/**
