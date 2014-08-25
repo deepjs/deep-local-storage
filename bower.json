@@ -1,0 +1,27 @@
+{
+  "name": "deep-local-storage",
+  "main": "index.js",
+  "version": "0.3.0",
+  "homepage": "https://github.com/deepjs/deep-marked",
+  "authors": [
+    "Gilles Coomans <gilles.coomans@gmail.com>"
+  ],
+  "description": "local storage store for deepjs (based on jstorage)",
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "keywords": [
+    "local storage",
+    "deepjs",
+    "jstorage"
+  ],
+  "license": "LGPL 3.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
