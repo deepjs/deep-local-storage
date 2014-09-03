@@ -29,7 +29,7 @@ define(["require","deepjs/deep", "deepjs/lib/unit"], function (require, deep, Un
         },
         tests : {
             post:function(){
-                return deep.rest(this)
+                return deep.restful(this)
                 //.log("chain store init in test")
                 .post( postTest )
                 .equal( postTest )
@@ -37,7 +37,7 @@ define(["require","deepjs/deep", "deepjs/lib/unit"], function (require, deep, Un
                 .equal(postTest);
             },
             postWithSameID:function(){
-                return deep.rest(this)
+                return deep.restful(this)
                 //.log("chain store init in test")
                 .post( postTest )
                 .fail(function(error){
@@ -47,7 +47,7 @@ define(["require","deepjs/deep", "deepjs/lib/unit"], function (require, deep, Un
             },
             put:function(){
                 // post
-                return deep.rest(this)
+                return deep.restful(this)
                 // put
                 .put(putTest)
                 .equal( putTest )
@@ -56,7 +56,7 @@ define(["require","deepjs/deep", "deepjs/lib/unit"], function (require, deep, Un
             },
             patch:function(){
                 // post
-                return deep.rest(this)
+                return deep.restful(this)
                 .patch({
                     order:4,
                     newVar:true,
@@ -69,14 +69,14 @@ define(["require","deepjs/deep", "deepjs/lib/unit"], function (require, deep, Un
             },
             query:function(){
                 // post
-                return deep.rest(this)
+                return deep.restful(this)
                 // query
                 .get("?order=4")
                 .equal([patchTest]);
             },
             del:function () {
                 var delDone = false;
-                return deep.rest(this)
+                return deep.restful(this)
                 .del("id123")
                 .done(function (argument) {
                     delDone = true;
@@ -93,7 +93,7 @@ define(["require","deepjs/deep", "deepjs/lib/unit"], function (require, deep, Un
 
 
 /*
-deep.rest("myobjects")
+deep.restful("myobjects")
 .patch({
     id:"id1381690769563",
     test:"hello",
