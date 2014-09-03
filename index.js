@@ -36,7 +36,7 @@ define(["require", "deepjs/deep", "deep-restful/lib/object", "deep-restful/lib/c
 			}
 			this.root = current;
 			
-			deep.utils.up(options, this);
+			deep.aup(options, this);
 		},
 		{
 			flush:deep.compose.after(function(opt){
@@ -94,7 +94,7 @@ define(["require", "deepjs/deep", "deep-restful/lib/object", "deep-restful/lib/c
 					};
 				})
 			}, this);
-			deep.utils.up(options, this);
+			deep.aup(options, this);
 		},
 		{
 			flush:deep.compose.after(function(opt){
