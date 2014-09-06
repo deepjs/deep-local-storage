@@ -48,7 +48,7 @@ define(["require", "deepjs/deep", "deep-restful/lib/object", "deep-restful/lib/c
         {
             return new deep.store.jstorage.Object(protocol, root, schema, options);
         };
-        deep.sheet({
+        deep.sheet(deep.store.jstorage.Object.prototype, {
 			"dq.up::./[post,put,patch,del]":deep.compose.around(function(old)
 			{
 				return function (object, opt) {
@@ -59,7 +59,7 @@ define(["require", "deepjs/deep", "deep-restful/lib/object", "deep-restful/lib/c
 					});
 				};
 			}),
-		}, deep.store.jstorage.Object.prototype);
+		});
 	/**
 	 * deep.store.jstorage.Collection
 	 * @param  {[type]} protocol                 (optional)[description]
@@ -81,7 +81,7 @@ define(["require", "deepjs/deep", "deep-restful/lib/object", "deep-restful/lib/c
 				$.jStorage.set(path, current, options);
 			}
 			this.collection = current;
-			deep.sheet({
+			deep.sheet(this, {
 				"dq.up::./[post,put,patch,del]":deep.compose.around(function(old)
 				{
 					return function (object, opt) {
@@ -93,7 +93,7 @@ define(["require", "deepjs/deep", "deep-restful/lib/object", "deep-restful/lib/c
 						});
 					};
 				})
-			}, this);
+			});
 			deep.aup(options, this);
 		},
 		{
