@@ -1,26 +1,27 @@
 {
-  "name": "deep-local-storage",
-  "description":"local storage stores and protocol for deepjs (based on jstorage)",
-  "author":"Gilles Coomans <gilles.coomans@gmail.com>",
-  "version": "0.3.1",
-  "contributors": ["Philippe Delabye <phil@chemicalrules.net>"],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/deepjs/deep-local-storage.git"
-  },
-  "licenses": [
-    {
-         "type": "LGPLv3.0",
-         "url": "http://www.gnu.org/licenses/lgpl-3.0.txt"
-     }
-  ],
-  "dependencies": {
-    "deepjs": ">=0.13.0"
-  },
-  "mappings":{
-  },
-  "engine":{
-  	"node":">=0.10.0"
-  },
-  "main":"./index.js"
+ "name": "deep-local-storage",
+ "description": "local storage stores and protocol for deepjs (based on jstorage)",
+ "author": "Gilles Coomans <gilles.coomans@gmail.com>",
+ "version": "0.3.2",
+ "contributors": [
+  "Philippe Delabye <phil@chemicalrules.net>"
+ ],
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/deepjs/deep-local-storage.git"
+ },
+ "licenses": [
+  {
+   "type": "LGPLv3.0",
+   "url": "http://www.gnu.org/licenses/lgpl-3.0.txt"
+  }
+ ],
+ "dependencies": {
+  "deepjs": ">=0.13.0"
+ },
+ "mappings": {},
+ "engine": {
+  "node": ">=0.10.0"
+ },
+ "main": "./index.js"
 }
