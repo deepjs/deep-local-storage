@@ -2,7 +2,7 @@
  "name": "deep-local-storage",
  "description": "local storage stores and protocol for deepjs (based on jstorage)",
  "author": "Gilles Coomans <gilles.coomans@gmail.com>",
- "version": "0.3.2",
+ "version": "0.3.3",
  "contributors": [
   "Philippe Delabye <phil@chemicalrules.net>"
  ],
@@ -18,7 +18,7 @@
  ],
  "dependencies": {
   "deepjs": ">=0.13.0",
-  "deep-resful":">=0.2.5"
+  "deep-resful": ">=0.2.5"
  },
  "mappings": {},
  "engine": {
