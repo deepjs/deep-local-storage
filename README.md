@@ -7,45 +7,51 @@ local storage driver (store) for deepjs (based on jstorage)
 ## Collection store Usage 
 
 ```javascript 
-	require("deep-local-storage/index");
-	deep.store.jstorage.Collection.create("myprotocol");
+var deep = require("deepjs/deep");
+require("deep-local-storage/index");
+require("deep-restful/index");
 
-	deep.restful("myprotocol")
-	.post({ hello:"world" })
-	.get()
-	.log();
+deep.jstorage.collection("myprotocol");
 
-	deep("myprotocol::?hello=world").log();
+deep.restful("myprotocol")
+.post({ hello:"world" })
+.get()
+.log();
 
-	deep.restful("myprotocol")
-	.put({ id:'test', myVar:"hello", myObject:{ myVar2:12344 }})
-	.logState()
-	.patch("patched with query",{id:"test", query:"/myVar"})
-	.logState()
-	.get("test")
-	.logState()
-	.put(7777777,{id:"test", query:"/myObject/myVar2"})
-	.logState()
-	.patch({other:true},{id:"test", query:"/myObject/myVar2"})
-	.logState()
-	.get("test")
-	.logState();
+deep("myprotocol::?hello=world").log();
+
+deep.restful("myprotocol")
+.put({ id:'test', myVar:"hello", myObject:{ myVar2:12344 }})
+.slog()
+.patch("patched with query","test/myVar")
+.slog()
+.get("test")
+.slog()
+.put(7777777,"test/myObject/myVar2")
+.slog()
+.patch({other:true},"test/myObject/myVar2")
+.slog()
+.get("test")
+.log();
 ```
 
 ## Object store Usage 
 
 ```javascript
-	require("deep-local-storage/index");
-	deep.store.jstorage.Object.create("myprotocol");
+var deep = require("deepjs/deep");
+require("deep-local-storage/index");
+require("deep-restful/index");
 
-	deep.restful("myprotocol")
-	.post({ hello:"world" },{ id:"/my/path" })
-	.get()
-	.log();
+deep.jstorage.object("myprotocol");
 
-	deep("myprotocol::/my/path").log();
+deep.restful("myprotocol")
+.post({ hello:"world", id:"/my/path" })
+.get()
+.log();
 
-	//...
+deep("myprotocol::/my/path").log();
+
+//...
 
 ```
 
