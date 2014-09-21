@@ -3,6 +3,13 @@
 
 local storage driver (store) for deepjs (based on [jstorage](http://www.jstorage.info/)) 
 
+## install
+
+```shell
+bower install deep-local-storage
+```
+
+You should also have [jstorage](http://www.jstorage.info/) loaded in your page.
 
 ## Collection store Usage 
 
