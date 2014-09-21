@@ -10,7 +10,7 @@ if (typeof define !== 'function') {
 }
 define(["require", "deepjs/deep", "deep-restful/lib/object", "deep-restful/lib/collection"],function (require, deep)
 {
-	deep.store.jstorage = deep.store.jstorage || {};
+	deep.jstorage = deep.jstorage || {};
 	/**
 	 * deep.store.jstorage.Object
 	 * @param  {[type]} protocol               (optional)[description]
@@ -19,7 +19,7 @@ define(["require", "deepjs/deep", "deep-restful/lib/object", "deep-restful/lib/c
 	 * @param  {[type]} options    (optional){ path:{ required string }, TTL:{ time to live (ms) }}
 	 */
 	
-	deep.store.jstorage.Object = deep.compose.Classes(deep.store.Object,
+	deep.jstorage.Object = deep.Classes(deep.Object,
 		function(protocol, root, schema, options){
 			options = options || {};
 			var path = options.path || protocol;
@@ -36,7 +36,7 @@ define(["require", "deepjs/deep", "deep-restful/lib/object", "deep-restful/lib/c
 			}
 			this.root = current;
 			
-			deep.aup(options, this);
+			deep.up(this, options);
 		},
 		{
 			flush:deep.compose.after(function(opt){
@@ -44,11 +44,11 @@ define(["require", "deepjs/deep", "deep-restful/lib/object", "deep-restful/lib/c
 				$.jStorage.set(this.path || this.protocol, this.root, opt);
 			})
 		});
-        deep.store.jstorage.Object.create = function(protocol, root, schema, options)
+        deep.jstorage.object = function(protocol, root, schema, options)
         {
-            return new deep.store.jstorage.Object(protocol, root, schema, options);
+            return new deep.jstorage.Object(protocol, root, schema, options);
         };
-        deep.sheet(deep.store.jstorage.Object.prototype, {
+        deep.sheet(deep.jstorage.Object.prototype, {
 			"dq.up::./[post,put,patch,del]":deep.compose.around(function(old)
 			{
 				return function (object, opt) {
@@ -67,7 +67,7 @@ define(["require", "deepjs/deep", "deep-restful/lib/object", "deep-restful/lib/c
 	 * @param  {[type]} schema                    (optional)[description]
 	 * @param  {[type]} options    (optional){ path:{ required string }, TTL:{ time to live (ms) }}
 	 */
-	deep.store.jstorage.Collection = deep.compose.Classes(deep.store.Collection,
+	deep.jstorage.Collection = deep.Classes(deep.Collection,
 		function(protocol, collection, schema, options){
 			options = options || {};
 			var path = options.path || protocol;
@@ -94,7 +94,7 @@ define(["require", "deepjs/deep", "deep-restful/lib/object", "deep-restful/lib/c
 					};
 				})
 			});
-			deep.aup(options, this);
+			deep.up(this, options);
 		},
 		{
 			flush:deep.compose.after(function(opt){
@@ -102,13 +102,13 @@ define(["require", "deepjs/deep", "deep-restful/lib/object", "deep-restful/lib/c
 				$.jStorage.set(this.path || this.protocol, this.collection, opt);
 			})
 		});
-        deep.store.jstorage.Collection.create = function(protocol, collection, schema, options)
+        deep.jstorage.collection = function(protocol, collection, schema, options)
         {
-            return new deep.store.jstorage.Collection(protocol, collection, schema, options);
+            return new deep.jstorage.Collection(protocol, collection, schema, options);
         };
 
         deep.coreUnits = deep.coreUnits || [];
 		deep.coreUnits.push("js::deep-local-storage/units/generic");
 	//__________________________________________________
-	return deep.store.jstorage;
+	return deep.jstorage;
 });
