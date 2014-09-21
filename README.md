@@ -1,7 +1,7 @@
 # deep-local-storage
 
 
-local storage driver (store) for deepjs (based on jstorage) 
+local storage driver (store) for deepjs (based on [jstorage](http://www.jstorage.info/)) 
 
 
 ## Collection store Usage 
